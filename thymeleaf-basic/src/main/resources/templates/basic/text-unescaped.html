@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>text vs utext</h1>
+<ul>
+    <!--  HTML의 콘텐츠(content)에 데이터를 출력할 때 th:text 사용 -->
+    <li>th:text = <span th:text="${data}"></span></li>
+    <li>th:utext = <span th:utext="${data}"></span></li>
+</ul>
+<h1><span th:inline="none">[[...]] vs [(...)]</span></h1>
+<ul>
+    <!--
+        HTML 테그의 속성이 아닌 HTML 콘텐츠 영역안에서 직접 데이터를 출력하고 싶으면 [[...]] 사용
+        컨텐츠 안에서 직접 출력하기 = [[${data}]]
+        [[...]] : escape 사용
+        [(...)] : escape 미사용
+     -->
+    <li><span th:inline="none">[[...]] = </span>[[${data}]]</li>
+    <li><span th:inline="none">[(...)] = </span>[(${data})]</li>
+</ul>
+</body>
+</html>
