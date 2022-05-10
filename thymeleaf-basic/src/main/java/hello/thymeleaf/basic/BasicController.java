@@ -149,4 +149,13 @@ public class BasicController {
         addUsers(model);
         return "basic/block";
     }
+
+    // [타임리프-기본기능] 자바스크립트 인라인
+    @GetMapping("/javascript")
+    public String javascript(Model model) {
+        model.addAttribute("user", new User("userA", 10));
+        addUsers(model);
+
+        return "basic/javascript";
+    }
 }
