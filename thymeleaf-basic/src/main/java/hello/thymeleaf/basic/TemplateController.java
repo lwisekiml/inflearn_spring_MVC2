@@ -13,4 +13,10 @@ public class TemplateController {
     public String template() {
         return "template/fragment/fragmentMain";
     }
+
+    // [타임리프-기본기능] 템플릿 레이아웃1
+    @GetMapping("/layout")
+    public String layout() {
+        return "template/layout/layoutMain";
+    }
 }
