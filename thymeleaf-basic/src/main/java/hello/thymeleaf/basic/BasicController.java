@@ -127,4 +127,11 @@ public class BasicController {
 
         model.addAttribute("users", list);
     }
+
+    // [타임리프-기본기능] 조건부 평가
+    @GetMapping("/condition")
+    public String condition(Model model) {
+        addUsers(model);
+        return "basic/condition";
+    }
 }
