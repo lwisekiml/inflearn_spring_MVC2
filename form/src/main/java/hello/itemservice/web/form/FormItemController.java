@@ -2,6 +2,7 @@ package hello.itemservice.web.form;
 
 import hello.itemservice.domain.item.Item;
 import hello.itemservice.domain.item.ItemRepository;
+import hello.itemservice.domain.item.ItemType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,11 @@ public class FormItemController {
         return regions;
     }
 
+    @ModelAttribute("itemTypes")
+    public ItemType[] itemTypes() {
+        return ItemType.values();
+    }
+
     @GetMapping
     public String items(Model model) {
         List<Item> items = itemRepository.findAll();
@@ -42,24 +48,12 @@ public class FormItemController {
         Item item = itemRepository.findById(itemId);
         model.addAttribute("item", item);
 
-//        Map<String, String> regions = new LinkedHashMap<>(); // HashMap을 사용하면 순서 보장X
-//        regions.put("SEOUL", "서울");
-//        regions.put("BUSAN", "부산");
-//        regions.put("JEJU", "제주");
-//        model.addAttribute("regions", regions);
-
         return "form/item";
     }
 
     @GetMapping("/add")
     public String addForm(Model model) {
         model.addAttribute("item", new Item());
-
-//        Map<String, String> regions = new LinkedHashMap<>(); // HashMap을 사용하면 순서 보장X
-//        regions.put("SEOUL", "서울");
-//        regions.put("BUSAN", "부산");
-//        regions.put("JEJU", "제주");
-//        model.addAttribute("regions", regions);
 
         return "form/addForm";
     }
@@ -69,6 +63,7 @@ public class FormItemController {
 
         log.info("item.open={}", item.getOpen());
         log.info("item.regions={}", item.getRegions());
+        log.info("item.itemType={}", item.getItemType());
 
         Item savedItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemId", savedItem.getId());
@@ -80,12 +75,6 @@ public class FormItemController {
     public String editForm(@PathVariable Long itemId, Model model) {
         Item item = itemRepository.findById(itemId);
         model.addAttribute("item", item);
-
-//        Map<String, String> regions = new LinkedHashMap<>(); // HashMap을 사용하면 순서 보장X
-//        regions.put("SEOUL", "서울");
-//        regions.put("BUSAN", "부산");
-//        regions.put("JEJU", "제주");
-//        model.addAttribute("regions", regions);
 
         return "form/editForm";
     }
