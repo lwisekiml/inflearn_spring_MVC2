@@ -2,7 +2,6 @@ package hello.itemservice.message;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
@@ -14,9 +13,12 @@ import static org.assertj.core.api.Assertions.*;
 @SpringBootTest
 public class MessageSourceTest {
 
-    @Qualifier("messageSource") // 확인 필요
+    private final MessageSource ms;
+
     @Autowired
-    MessageSource ms;
+    public MessageSourceTest(MessageSource messageSource) {
+        this.ms = messageSource;
+    }
 
     @Test
     void helloMessage() {
